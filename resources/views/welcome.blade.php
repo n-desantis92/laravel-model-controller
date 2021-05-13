@@ -16,12 +16,7 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
                 margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
             }
 
             .flex-center {
@@ -84,7 +79,7 @@
                     <li>
                         <h3>{{$movie->title}}</h3>
                         <h5>{{$movie->author}}</h5>
-                        <p>{{$movie->plot}}</p>
+                        <p>Trama: <br>{{$movie->plot}}</p>
                     </li>
                 @endforeach
             </div>
