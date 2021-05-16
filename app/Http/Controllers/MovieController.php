@@ -14,7 +14,12 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        return view('movies.index', compact('movies'));
+
+        $movies_fantasy = Movie::where('genre', 'like', '%fantascienza%')
+        ->orderBy('year', 'asc')
+        ->get();
+
+        return view('movies.index', compact('movies', 'movies_fantasy'));
     }
 
     /**

@@ -1,3 +1,61 @@
-body {
-  background-color: red;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: blueviolet;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+header a {
+  padding: 0 20px;
+  text-decoration: none;
+  color: yellow;
+}
+
+.content {
+  width: 100%;
+  margin: 0 auto;
+  background-color: beige;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content h1 {
+  padding: 30px 0;
+}
+.content .film {
+  background-size: cover;
+  width: 50%;
+  color: black;
+  border-radius: 10px;
+  background-color: maroon;
+  margin: 20px 0;
+  padding: 20px 0;
+}
+.content .film h3 {
+  padding: 20px 0;
+}
+.content .film ul {
+  list-style-type: none;
+}
+.content .film ul h5 {
+  margin-bottom: 15px;
+}
+.content .film ul p {
+  padding: 20px;
+}
+.content .film a {
+  text-decoration: none;
+}
+
+.dettaglio {
+  width: 60%;
+  margin: 30px auto;
+  text-align: center;
 }
