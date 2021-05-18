@@ -6,7 +6,7 @@
 @section('content')
     <div class="mt-5">
         <div class="text-right">
-            <button type="button" class="btn btn-success mb-3 ">Aggiungi film</button>
+            <a href="{{route('movies.create')}}"><button type="button" class="btn btn-success mb-3 ">Aggiungi Film</button></a>
         </div>
         <table class="table table-striped">
             <thead>
