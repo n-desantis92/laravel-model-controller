@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
+        <div class="container mt-5">
             <h1>@yield('pageTitle')</h1>
             @yield('content')
         </div>
