@@ -25,11 +25,25 @@
                     <td>{{$movie->title}}</td>
                     <td>{{$movie->author}}</td>
                     <td>{{$movie->genre}}</td>
-                    <td><a href="{{route('movies.show', ['movie' => $movie->id])}}"><button type="button" class="btn btn-primary">visualizza</button></a></td>
+                    <td>
+                        <a href="{{route('movies.show', ['movie' => $movie->id])}}"><button type="button" class="btn btn-primary">visualizza</button></a>
+                        <form action="{{route('movies.destroy', ['movie' => $movie->id])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Elimina</button>
+                        </form>
+                    </td>
+                    <td>
+
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
 @endsection

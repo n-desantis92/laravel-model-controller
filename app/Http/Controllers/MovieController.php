@@ -51,22 +51,25 @@ class MovieController extends Controller
             'year' => 'required|numeric|min:1900|max:' . $year
         ]);
 
-        $data = $request->all();
+        $movieNew = Movie::create($request->all());
 
-        $movieNew = new Movie();
-        $movieNew ->title = $data['title'];
-        $movieNew->author = $data['author'];
-        $movieNew-> genre= $data['genre'];
-        $movieNew->plot = $data['plot'];
-        $movieNew->year = $data['year'];
-        if( isset($data['cover_image']) && !empty($data['cover_image']) ) {
+        // $data = $request->all();
 
-            $movieNew->cover_image = $data['cover_image'];
-        }
-        //per inviare e salvare i dati in entrata
-        $movieNew->save();
+        // $movieNew = new Movie();
+        // $movieNew ->title = $data['title'];
+        // $movieNew->author = $data['author'];
+        // $movieNew-> genre= $data['genre'];
+        // $movieNew->plot = $data['plot'];
+        // $movieNew->year = $data['year'];
+        // if( isset($data['cover_image']) && !empty($data['cover_image']) ) {
+
+        //     $movieNew->cover_image = $data['cover_image'];
+        // }
+        // //per inviare e salvare i dati in entrata
+        // $movieNew->save();
+
         // reindirizzo alla pagina che voglio tramite
-        return redirect()->route('movies.show', $movieNew);
+        return redirect()->route('movies.index')->with('message', 'Il film '.$movieNew->title . ' è stato aggiunto!');
 
 
     }
@@ -111,8 +114,10 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        
+        return redirect()->route('movies.index')->with('message', 'Il film è stato eliminato!');
     }
 }
