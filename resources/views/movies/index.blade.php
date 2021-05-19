@@ -11,6 +11,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">cover</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Regista</th>
                     <th scope="col">Generi</th>
@@ -20,6 +21,7 @@
             <tbody>
                 @foreach ($movies as $movie)
                 <tr>
+                    <td><img src="{{$movie->cover_image}}" class="cover" alt="{{$movie->title}}" style="width: 100px"></td>
                     <td>{{$movie->title}}</td>
                     <td>{{$movie->author}}</td>
                     <td>{{$movie->genre}}</td>

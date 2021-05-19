@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateMoviesTable extends Migration
+class Update2MoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateMoviesTable extends Migration
      */
     public function up()
     {
-        Schema::table('movies', function (Blueprint $table){
+        Schema::table('movies', function (Blueprint $table) {
             $table->string('cover_image')->default('https://via.placeholder.com/600');
         });
     }

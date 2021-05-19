@@ -5,14 +5,33 @@
 @endsection
 
 @section('content')
+
     <div class="mt-5">
-        <form action="{{'movies.store'}}" method="POST">
+    {{-- visualizzatore di errori --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>   
+        @endif
+    {{-- /visualizzatore di errori --}}
+
+        <form action="{{route('movies.store')}}" method="POST">
             @csrf
             @method('POST')
 
             <div class="form-group">
+                <label for="cover_image">Iimage_covermmagine Cover</label>
+                <input type="text" class="form-control" id="cover_image" name="cover_image" placeholder="URL Immaggine">
+            </div>
+
+            <div class="form-group">
                 <label for="title">Titolo</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titolo">
+                {{-- per far vedere l'errore nell'input aggiungere la classe boostrap con blade --}}
+                <input type="text" class="form-control  @error('title') is-invalid @enderror" id="title" name="title" placeholder="Titolo">
             </div>
             <div class="form-group">
                 <label for="author">Regista</label>

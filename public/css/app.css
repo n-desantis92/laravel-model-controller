@@ -10030,32 +10030,8 @@ header a {
   flex-direction: column;
   align-items: center;
 }
-.content h1 {
-  padding: 30px 0;
-}
-.content .film {
-  background-size: cover;
-  width: 50%;
-  color: black;
-  border-radius: 10px;
-  background-color: maroon;
-  margin: 20px 0;
-  padding: 20px 0;
-}
-.content .film h3 {
-  padding: 20px 0;
-}
-.content .film ul {
-  list-style-type: none;
-}
-.content .film ul h5 {
-  margin-bottom: 15px;
-}
-.content .film ul p {
-  padding: 20px;
-}
-.content .film a {
-  text-decoration: none;
+.content img.cover {
+  width: 100px;
 }
 
 .dettaglio {
