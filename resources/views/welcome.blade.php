@@ -75,14 +75,33 @@
             @endif
 
             <div class="content">
-                @foreach ($movies as $movie)
-                    <li>
-                        <h3>{{$movie->title}}</h3>
-                        <h5>{{$movie->author}}</h5>
-                        <p>Trama: <br>{{$movie->plot}}</p>
-                    </li>
-                @endforeach
+                <h2>Vuejs</h2>
+                <div id="app">
+                    <ul>
+                        <li v-for="film in films">
+                            <h3>@{{film.title}}</h3>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    films: []
+                },
+                mounted: function() {
+                    axios.get('/api/movies')
+                    .then((response) => {
+                        this.films = response.data;
+                        console.log(this.films);
+                    });
+                },
+            })
+        </script>
     </body>
 </html>

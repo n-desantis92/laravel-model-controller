@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// il namespace si usa per raggruppare le rotte sooto il prefisso Api\
+Route::namespace('Api')->group(function (){
+    Route::get('/movies', 'MovieController@index');
+    Route::get('/movies/{movie}', 'MovieController@show');
+});

@@ -33,7 +33,7 @@ class MovieController extends Controller
         $movies_fantasy = Movie::where('genre', 'like', '%fantascienza%')
         ->orderBy('year', 'asc')
         ->get();
-
+        
         return view('movies.index', compact('movies', 'movies_fantasy'));
     }
 
