@@ -7,6 +7,20 @@ use App\Movie;
 
 class MovieController extends Controller
 {
+    protected $requestValidation = [];
+    public function __construct()
+    {
+        $year = date('Y') + 1;
+
+        $this->requestValidation = [
+            'title' => 'required|string|max:100',
+            'author' => 'required|string|max:50',
+            'genre' => 'required|string|max:50',
+            'plot' => 'required|string',
+            'year' => 'required|numeric|min:1900|max:' . $year
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,17 +55,18 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $year = date('Y') + 1;
-        // per validare i dati in entrata dell'utente
-        $request->validate([
-            'title' => 'required|string|max:100',
-            'author' => 'required|string|max:50',
-            'genre' => 'required|string|max:50',
-            'plot' => 'required|string',
-            'year' => 'required|numeric|min:1900|max:' . $year
-        ]);
 
-        $movieNew = Movie::create($request->all());
+        $data = $request->all();
+
+        if ($data['cover_image'] == NULL) {
+            unset($data['cover_image']);
+        }
+
+        // per validare i dati in entrata dell'utente vai a riga 10/20
+        $request->validate($this->requestValidation);
+
+
+        $movieNew = Movie::create($data);
 
         // $data = $request->all();
 
@@ -91,9 +106,9 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        return view('movies.edit', ['movie' => $movie]);
     }
 
     /**
@@ -103,9 +118,22 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+
+        $data = $request->all();
+
+        if ($data['cover_image'] == NULL) {
+            unset($data['cover_image']);
+        }
+
+        // validazione dei dati in entrata
+        $request->validate($this->requestValidation);
+
+        // queri di aggiornamento
+        $movie->update($data);
+        // reindirizzamento alla pagina
+        return redirect()->route('movies.show', $movie);
     }
 
     /**
